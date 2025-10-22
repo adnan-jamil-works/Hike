@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Slider = ({ sectionsRef }) => {
   const [activeSection, setActiveSection] = useState(0);
@@ -26,25 +26,17 @@ const Slider = ({ sectionsRef }) => {
   }, []);
 
   return (
-    <div className="fixed top-1/2 right-2 sm:right-8 -translate-y-1/2 z-50 flex flex-col items-center gap-3 sm:gap-6">
-      <h2 className="text-white font-bold text-sm sm:text-lg mb-2 sm:mb-4 text-center">
+    <div className="fixed top-1/2 right-2 sm:right-0 -translate-y-1/2 z-50 flex flex-col items-end pr-0 m-0">
+      {/* Start label */}
+      <h2
+        className="text-white font-bold text-xs sm:text-lg mb-3 text-right mr-1 sm:mr-2 
+        drop-shadow-[0_2px_4px_rgba(0,0,0,1)] brightness-110 contrast-125"
+      >
         Start
       </h2>
 
-      <div className="flex flex-row items-center gap-2 sm:gap-4">
-        <div className="flex flex-col justify-between h-48 sm:h-64 text-white font-semibold text-sm sm:text-lg">
-          {[0, 1, 2, 3].map((num, i) => (
-            <span
-              key={i}
-              className={`transition-all duration-300 ${
-                activeSection === i ? "text-white scale-125" : "opacity-50"
-              }`}
-            >
-              {num}
-            </span>
-          ))}
-        </div>
-
+      <div className="relative flex items-center justify-end">
+        {/* Slider */}
         <input
           type="range"
           min="0"
@@ -52,8 +44,27 @@ const Slider = ({ sectionsRef }) => {
           step="1"
           value={activeSection}
           onChange={handleSliderChange}
-          className="h-48 sm:h-64 rotate-[90deg] accent-white cursor-pointer"
+          className="h-40 sm:h-64 rotate-[90deg] accent-white cursor-pointer m-0 p-0 absolute right-0 sm:right-0"
         />
+
+        {/* Numbers */}
+        <div
+          className="flex flex-col justify-between h-40 sm:h-64 font-semibold text-xs sm:text-lg pr-6 sm:pr-6 
+          text-white drop-shadow-[0_2px_4px_rgba(0,0,0,1)] brightness-110 contrast-125"
+        >
+          {[0, 1, 2, 3].map((num, i) => (
+            <span
+              key={i}
+              className={`transition-all duration-300 ${
+                activeSection === i
+                  ? "text-yellow-300 scale-125 drop-shadow-[0_3px_6px_rgba(0,0,0,1)]"
+                  : "opacity-90"
+              }`}
+            >
+              {num}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
