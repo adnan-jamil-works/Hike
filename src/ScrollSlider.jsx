@@ -12,6 +12,7 @@ const ScrollSlider = () => {
   const sectionsRef = useRef([]);
 
   return (
+    <>
     <div className="relative overflow-hidden left-0">
       <SocialMedia />
       <Slider sectionsRef={sectionsRef} />
@@ -31,8 +32,10 @@ const ScrollSlider = () => {
       <section ref={(el) => (sectionsRef.current[3] = el)}>
         <Section03 />
       </section>
-      <Footer />
+      
     </div>
+      <Footer/>
+    </>
   );
 };
 
